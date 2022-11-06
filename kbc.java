@@ -84,7 +84,7 @@ static void Options(int c) {
 
 static String rand(int k)
 {
-	//write your random generator code here 
+	//write your random word generator code here 
 	return w;
 }
 }
