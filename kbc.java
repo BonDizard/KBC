@@ -62,7 +62,7 @@ static String Answer(int b) {
 	return a.get(b);
 }
 static void Options(int c) {
-	String p[] = {"a","b","c","d"};
+	String p[] = {" "," "," "," "};
 	Random r = new Random();
 	int z = r.nextInt(4);// 2
 	p[z] = Answer(c);// 0,1,2,3
@@ -73,6 +73,18 @@ static void Options(int c) {
 		case 3:System.out.println("C:"+p[z]+"\n");break;
 		case 4:System.out.println("D:"+p[z]+"\n");break;
 		}
+	for(int k=1;k<p.length;k++)
+	{
+		if(p[k]==" ")
+		{
+			String m = rand(k);
+		}
+	}
+}
 
+static String rand(int k)
+{
+	//write your random generator code here 
+	return w;
 }
 }
