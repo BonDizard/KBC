@@ -1,10 +1,12 @@
 package bond;
 import java.util.Scanner;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 public class KBC {
 	public static void main(String[] args)
 	{
+		Answers bot = new Answers();
 	System.out.println("kon banega kororpathi\n"); 
 	HashMap<Integer,String> QnA = new HashMap<Integer,String>();
 	QnA.put(1, "The International Literacy Day is observed on?" );//key(Index) and object(value)"Sep8",
@@ -20,29 +22,41 @@ public class KBC {
 	start(QnA);
 }
 
-	private static void start(HashMap<Integer, String> QnA)
+	public static void start (HashMap<Integer, String> QnA)
 	{
-		System.out.println("please enter the question number");
-		System.out.println(p + ": the Question is:\n" + QnA.get(p) + "\n");
+		Answers bot = new Answers();
 		Scanner scan = new Scanner(System.in);
+		System.out.println("please enter the question number");
 		int p;
 		p = scan.nextInt();
+		System.out.println(p + ": the Question is: "+ QnA.get(p) + "\n");
 		while(p<=10)
 		{
-		Options(p);
-		LifeLines(scan);
-		System.out.println("Please enter the option you think is write\nA\nB\nC\nD");
-		char f = scan.next();
+			bot.correctAnswer(p);
+		HashMap<Character, String> op = bot.Options(p);
+		System.out.println(op);	
+		//LifeLines(scan);
+		for (int i= 1;i<=4;i++)
+		{
+		System.out.println("Option:" +i );
+		}
+		System.out.println("Please enter the option you think is write\n");
+		int f = scan.nextInt();
 		checkAnswer(f);
-		start();
+		start(QnA);
 		}
 	}
 
-static void checkAnswer(char f) 
+static void checkAnswer(int f) 
 {
-	correctAnswer();
+	Answers bot = new Answers();
+	
+	bot.correctAnswer(f);
+	
 	
 }
+}
+/*
 
 static void LifeLines(Scanner scan)
 {
@@ -80,82 +94,119 @@ static void LifeLines(Scanner scan)
 		System.out.println("Very good all the best");
 	}
 }
+*/
 
-static String Answer(int b) {
-	HashMap<Integer, String> a = new HashMap<Integer, String>();
 
-	switch (b) {
-	case 1:
-		a.put(1, "Sep8");
-		break;
-	case 2:
-		a.put(2, "Malayalam");
-		break;
-	case 3:
-		a.put(3, "Prayag. Haridwar, Ujjain,. Nasik");
-		break;
-	case 4:
-		a.put(4, "Jainism");
-		break;
-	case 5:
-		a.put(5, "Oct 14");
-		break;
-	case 6:
-		a.put(6, "Dignity for all - focus on Children'");
-		break;
-	case 7:
-		a.put(7, "World Tourism Day");
-		break;
-	case 8:
-		a.put(8, "Amrit Lal Nagar");
-		break;
-	case 9:
-		a.put(9, "Mahatma Oandhi");
-		break;
-	case 10:
-		a.put(10, "Eiichiro Oda");
-		break;
-	}
-	return a.get(b);
-}
-
-static void Options(int c) {
-	String p[] = { " ", " ", " ", " " };
-
-	String h = correctAnswer(c, p);
-	for (int k = 1; k < p.length; k++) {
-		if (p[k] == " ") {
-			String m = rand(k);
-		}
-	}
-}
-
-private static String correctAnswer(int c, String[] p) {
-	HashMap<Character, String> oop = new HashMap<Character, String>();
-	Random r = new Random();
-	int z = r.nextInt(4);// 2
-	p[z] = Answer(c);// 0,1,2,3
-	switch (z + 1) {
-	case 1:
-		oop.put('A', p[z]);
-		break;// System.out.println("A:"+p[z]+"\n");
-	case 2:
-		oop.put('B', p[z]);
-		break;// System.out.println("B:"+p[z]+"\n");break;
-	case 3:
-		oop.put('C', p[z]);
-		break;// System.out.println("C:"+p[z]+"\n");break;
-	case 4:
-		oop.put('D', p[z]);
-		break;// System.out.println("D:"+p[z]+"\n");break;
-	}
-	return p[z];
-}
-
-static String rand(int k)
+class Answers
 {
-	// write your random word generator code here
-	return w;
-}
+	ArrayList<String> pat = new ArrayList<String>();
+	//String p[] = { " ", " ", " ", " " };
+	String Answers_for_Qestions(int b)
+	{
+		pat.add( "*" );
+		pat.add( "*" );
+		pat.add( "*" );
+		pat.add( "*" );
+		HashMap<Integer, String> a = new HashMap<Integer, String>();
+		
+		switch (b) {
+		case 1:
+			a.put(1, "Sep8");
+			break;
+		case 2:
+			a.put(2, "Malayalam");
+			break;
+		case 3:
+			a.put(3, "Prayag. Haridwar, Ujjain,. Nasik");
+			break;
+		case 4:
+			a.put(4, "Jainism");
+			break;
+		case 5:
+			a.put(5, "Oct 14");
+			break;
+		case 6:
+			a.put(6, "Dignity for all - focus on Children'");
+			break;
+		case 7:
+			a.put(7, "World Tourism Day");
+			break;
+		case 8:
+			a.put(8, "Amrit Lal Nagar");
+			break;
+		case 9:
+			a.put(9, "Mahatma Oandhi");
+			break;
+		case 10:
+			a.put(10, "Eiichiro Oda");
+			break;
+		}
+		return a.get(b);
+	}
+
+
+	 ArrayList<String> correctAnswer(int c) {
+		int z = r.nextInt(4);// 2
+		 String an = Answers_for_Qestions(c);// 0,1,2,3
+		 pat.add(an);
+		switch (z + 1) {
+		case 1:
+			oop.put('A', p[z]);
+			break;// System.out.println("A:"+p[z]+"\n");
+		case 2:
+			oop.put('B', p[z]);
+			break;// System.out.println("B:"+p[z]+"\n");break;
+		case 3:
+			oop.put('C', p[z]);
+			break;// System.out.println("C:"+p[z]+"\n");break;
+		case 4:
+			oop.put('D', p[z]);
+			break;// System.out.println("D:"+p[z]+"\n");break;
+		}
+		return pat;
+	}
+	 HashMap<Character, String> oop = new HashMap<Character, String>();
+	 Random r = new Random();
+	 
+	 HashMap<Character, String> Options(int c)
+	 {
+		 for (int k = 1; k < p.length; k++) 
+		 {
+			 if (pat  == "*") {
+				 for (int i = 0; i < 3; i++) {
+					 String randomWord = rand(k);
+					 p[k]= randomWord;
+				 }
+			 }
+			 switch (k) {
+			 case 1:
+				 oop.put('A', p[k]);
+				 break;
+			 case 2:
+				 oop.put('B', p[k]);
+				 break;
+			 case 3:
+				 oop.put('C', p[k]);
+				 break;
+			 case 4:
+				 oop.put('D', p[k]);
+				 break;
+			 }
+		 }
+		 return oop;
+	 }
+
+	 String rand(int len) {
+		 String name = "";
+		int move = r.nextInt(4,8);
+	        for (int i = 0; i < move; i++) 
+	        {
+	            int v = 1 + (int) (Math.random() * 26);
+	            char c = (char) (v + (i == 0 ? 'A' : 'a') - 1);
+	            name += c;
+	        }
+	        return name;
+	}
 
 }
+
