@@ -151,16 +151,16 @@ class Answers
 		 pat.add(an);
 		switch (z + 1) {
 		case 1:
-			oop.put('A', p[z]);
+			oop.put('A', pat.get(z));
 			break;// System.out.println("A:"+p[z]+"\n");
 		case 2:
-			oop.put('B', p[z]);
+			oop.put('B', pat.get(z));
 			break;// System.out.println("B:"+p[z]+"\n");break;
 		case 3:
-			oop.put('C', p[z]);
+			oop.put('C', pat.get(z));
 			break;// System.out.println("C:"+p[z]+"\n");break;
 		case 4:
-			oop.put('D', p[z]);
+			oop.put('D', pat.get(z));
 			break;// System.out.println("D:"+p[z]+"\n");break;
 		}
 		return pat;
@@ -170,26 +170,26 @@ class Answers
 	 
 	 HashMap<Character, String> Options(int c)
 	 {
-		 for (int k = 1; k < p.length; k++) 
+		 for (int k = 1; k < pat.size(); k++) 
 		 {
-			 if (pat  == "*") {
+			 if (pat.contains("*")) {
 				 for (int i = 0; i < 3; i++) {
 					 String randomWord = rand(k);
-					 p[k]= randomWord;
+					 pat.add(randomWord);
 				 }
 			 }
 			 switch (k) {
 			 case 1:
-				 oop.put('A', p[k]);
+				 oop.put('A', pat.get(k));
 				 break;
 			 case 2:
-				 oop.put('B', p[k]);
+				 oop.put('B', pat.get(k));
 				 break;
 			 case 3:
-				 oop.put('C', p[k]);
+				 oop.put('C', pat.get(k));
 				 break;
 			 case 4:
-				 oop.put('D', p[k]);
+				 oop.put('D', pat.get(k));
 				 break;
 			 }
 		 }
