@@ -116,25 +116,32 @@ public void lifeLines(Scanner scan,HashMap<Character, String> water, HashMap<Cha
 	int noob = scan.nextInt();
 	System.out.println(noob);
 	if (noob == 1) {
-		System.out.println("which lifeline do you want to use" + "\n1: Call_of_friend,2: Audience_poll,3: 50-50");
-		int utter = scan.nextInt();
-		
-		switch (utter) {
-		case 1:
-			call_of_friend(fire);
-			break;
-		case 2:
-			audience_poll(fire);
-			
-			break;
-		case 3:
-			fifty_fifty(water, fire);
-			break;
-		default:
-			System.out.println("please sleact any of these three lifeline");
-		}
+		repeat(scan, water, fire);
 	} else if (noob != 2) {
 		System.out.println("Please enter the valid input");
+		lifeLines(scan,water,fire);
+	}
+}
+
+private void repeat(Scanner scan, HashMap<Character, String> water, HashMap<Character, String> fire) {
+	System.out.println("which lifeline do you want to use" + "\n1: Call_of_friend,2: Audience_poll,3: 50-50");
+	int utter = scan.nextInt();
+	
+	switch (utter) {
+	case 1:
+		call_of_friend(fire);
+		break;
+	case 2:
+		audience_poll(fire);
+		
+		break;
+	case 3:
+		fifty_fifty(water, fire);
+		break;
+	default:
+		System.out.println("please sleact any of these three lifeline");
+		repeat(scan,water,fire);
+		
 	}
 }
 
@@ -183,28 +190,7 @@ private static HashMap<Character, String> fifty_fifty(HashMap<Character, String>
 }
 public class KBC {
 	public static void main(String[] args) {
-		int p = Questions();
-		Answers bot = new Answers();
-		Scanner scan = new Scanner(System.in);
-		while (true) {
-			HashMap<Character, String> fire = bot.Options(p);
-			HashMap<Character, String> water = new HashMap<Character, String>();
-			HashMap<Character, String> smoke = bot.wa(water);
-			smoke.putAll(fire);
-			System.out.println(smoke);
-			bot.lifeLines(scan,water, fire);
-			System.out.println("Please enter the option you think is right");
-			int r = scan.nextInt();
-			boolean ryuk = AnswerCorrect(r, p, fire);
-
-			if (ryuk == true) {
-				System.out.println("Congratulations its right answer");
-				Questions();
-			}
-			break;
-		}
-
-		System.out.println("Oops you have answered wrong answer\nbetter luck next time");
+		Questions();
 	}
 
 	static int Questions() {
@@ -224,6 +210,28 @@ public class KBC {
 		int p;
 		p = sc.nextInt();
 		System.out.println(p + ": the Question is: " + QnA.get(p) + "\n");
+		Answers bot = new Answers();
+		Scanner scan = new Scanner(System.in);
+		while (true) {
+			HashMap<Character, String> fire = bot.Options(p);
+			HashMap<Character, String> water = new HashMap<Character, String>();
+			HashMap<Character, String> smoke = bot.wa(water);
+			smoke.putAll(fire);
+			System.out.println(smoke);
+			bot.lifeLines(scan,water, fire);
+			System.out.println("Please enter the option you think is right");
+			int r = scan.nextInt();
+			boolean ryuk = AnswerCorrect(r, p, fire);
+
+			if (ryuk == true) {
+				System.out.println("Congratulations its right answer");
+				Questions();
+			}
+			break;
+			
+		}
+
+		System.out.println("Oops you have answered wrong answer\nbetter luck next time");
 		return p;
 	}
 
