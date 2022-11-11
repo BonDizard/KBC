@@ -8,18 +8,20 @@ import java.util.Random;
 class Answers {
 	int[] nami = new int[2];
 
-	public int[] lifeLines(Scanner scan, HashMap<Character, String> water, HashMap<Character, String> fire) {
+	public boolean lifeLines(Scanner scan, HashMap<Character, String> water, HashMap<Character, String> fire) {
 
 		System.out.println("Do you want to choose LifeLines? 1:yes, 2:no");
 		int noob = scan.nextInt();
 		System.out.println(noob);
 		if (noob == 1) {
 			repeat(scan, water, fire);
+			return true;
 		} else if (noob != 2) {
 			System.out.println("Please enter the valid input");
 			lifeLines(scan, water, fire);
+			return false;
 		}
-		return nami;
+		return true;
 	}
 
 	private boolean repeat(Scanner scan, HashMap<Character, String> water, HashMap<Character, String> fire) {
@@ -218,19 +220,22 @@ public class KBC {
 			if (sam <= 4) {
 				switch (sam) {
 				case 1:
-					bot.lifeLines(scan, water, fire);
-					System.out.print("Life-Lines used: " + sam + " \n");
-					sam++;
+					boolean yash = bot.lifeLines(scan, water, fire);
+					System.out.print("Life-Lines used: " + (sam-1) + " \n");
+					if(yash==true) {
+					sam++;}
 					break;
 				case 2:
-					bot.lifeLines(scan, water, fire);
-					System.out.print("Life-Lines used: " + sam + " \n");
-					sam++;
+					 yash = bot.lifeLines(scan, water, fire);
+					System.out.print("Life-Lines used: " + (sam-1) + " \n");
+					if(yash==true) {
+						sam++;}
 					break;
 				case 3:
-					bot.lifeLines(scan, water, fire);
-					System.out.print("Life-Lines used: " + sam + " \n");
-					sam++;
+					 yash = bot.lifeLines(scan, water, fire);
+					System.out.print("Life-Lines used: " + (sam-1) + " \n");
+					if(yash==true) {
+						sam++;}
 					break;
 				}
 			}
