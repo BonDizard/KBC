@@ -92,9 +92,8 @@ public class KBC {
 		}
 	}
 
-	public static  HashMap<Character, String> lifeLines(HashMap<Character, String> water, HashMap<Character, String> fire) {
+	public static void lifeLines(HashMap<Character, String> water, HashMap<Character, String> fire) {
 		doing( water,fire);
-		return water;
 	}
 
 	private static void doing(HashMap<Character, String> water, HashMap<Character, String> fire) {
@@ -103,17 +102,17 @@ public class KBC {
 		int noob = s.nextInt();
 		System.out.println(noob);
 		if (noob == 1) {
-			System.out.println("which lifeline do you want to use" + "\n1:Call_of_friend,2:Audience_poll,3:50-50");
+			System.out.println("which lifeline do you want to use" + "\n1: Call_of_friend,2: Audience_poll,3: 50-50");
 			int utter = s.nextInt();
 			
 			switch (utter) {
-			case 1:call_of_friend(water,fire);
+			case 1:call_of_friend(fire);
 				break;
 			case 2:
-				audience_poll();
+				audience_poll(fire);
 				break;
 			case 3:
-				fifty_fifty();
+				fifty_fifty(water,fire);
 				break;
 			default:
 				System.out.println("please sleact any of these three lifeline");
@@ -126,15 +125,18 @@ public class KBC {
 		s.close();
 	}
 
-	private static void fifty_fifty() {
+	private static void call_of_friend(HashMap<Character, String> fire) {
+		System.out.println("Your friend is telling you to pick"+fire);
 
 	}
 
-	private static void audience_poll() {
-
+	private static void audience_poll(HashMap<Character, String> fire) {
+		Random r = new Random();
+		int sanji = r.nextInt(80,85);
+		System.out.println(sanji+" % of the audience have voted for"+fire);
 	}
 
-	private static HashMap<Character, String> call_of_friend(HashMap<Character, String> water, HashMap<Character, String> fire) {
+	private static HashMap<Character, String> fifty_fifty(HashMap<Character, String> water, HashMap<Character, String> fire) {
 		if(	water.containsKey('A'))
 		{
 			water.remove('A');
