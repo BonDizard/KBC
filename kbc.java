@@ -82,7 +82,6 @@ class Answers {
 			a.put(10, "Eiichiro Oda");
 			break;
 		}
-
 		return a.get(b);
 	}
 
@@ -187,7 +186,8 @@ class Answers {
 
 public class KBC {
 	public static void main(String[] args) {
-		System.out.println("Welcome to Kaun Banega Crorepati, mai apka Amitabh Bachchan\n");
+		System.out.println("Welcome to Kaun Banega Crorepati, mai apka Amitabh Bachchan");
+		System.out.println("for A press 1, B press 2, C press 3, D press 4");
 		int q_no = 1;
 		int sam = 1;
 		Questions(q_no, sam);
@@ -197,15 +197,16 @@ public class KBC {
 		HashMap<Integer, String> QnA = new HashMap<Integer, String>();
 		QnA.put(1, "Who invented Java Programming?");
 		QnA.put(2, "The language of Lakshadweep. a Union Territory of India, is?");
-		QnA.put(3,  "Number of primitive data types in Java are?");
+		QnA.put(3, "Number of primitive data types in Java are?");
 		QnA.put(4, "Which component is used to compile, debug and execute the java programs?");
 		QnA.put(5, "What is the extension of java code files?");
 		QnA.put(6, "Which exception is thrown when java is out of memory?");
 		QnA.put(7, "The \\u0021 article referred to as a");
 		QnA.put(8, " What is the return type of the hashCode() method in the Object class? ?");
-		QnA.put(9, "Which method of the Class.class is used to determine the name of a class represented by the class object as a String?");
+		QnA.put(9,
+				"Which method of the Class.class is used to determine the name of a class represented by the class object as a String?");
 		QnA.put(10, "who is the Mangaka of One piece");
-		System.out.println(q_no + ":" + QnA.get(q_no) );
+		System.out.println(q_no + ":" + QnA.get(q_no));
 		Answers bot = new Answers();
 		Scanner scan = new Scanner(System.in);
 		while (true) {
@@ -218,14 +219,17 @@ public class KBC {
 				switch (sam) {
 				case 1:
 					bot.lifeLines(scan, water, fire);
+					System.out.print("Life-Lines used: " + sam + " \n");
 					sam++;
 					break;
 				case 2:
 					bot.lifeLines(scan, water, fire);
+					System.out.print("Life-Lines used: " + sam + " \n");
 					sam++;
 					break;
 				case 3:
 					bot.lifeLines(scan, water, fire);
+					System.out.print("Life-Lines used: " + sam + " \n");
 					sam++;
 					break;
 				}
@@ -239,6 +243,7 @@ public class KBC {
 				System.out.println("Congratulations its right answer\n");
 				q_no++;
 				Questions(q_no, sam);
+			} else if (q_no > 10) {
 			} else {
 				System.out.println("Oops you have answered wrong answer\nbetter luck next time");
 				break;
