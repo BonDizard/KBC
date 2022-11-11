@@ -1,169 +1,183 @@
 package bond;
-import java.util.Scanner;
-import java.util.ArrayList;
+
+import java.util.*;
+import java.util.Map.Entry;
 import java.util.HashMap;
 import java.util.Random;
 
 public class KBC {
 	public static void main(String[] args) {
-		Scanner scan = new Scanner(System.in);
+		int p = Questions();
 		Answers bot = new Answers();
-		System.out.println("kon banega kororpathi\n");
-		System.out.println("Do you want the computer to ask questions\nif yes press 1 \nif you have questions press 2");
-		Questions();
-		/*int yes = scan.nextInt();
-		if(yes==1)
+		Scanner scan = new Scanner(System.in);
+		while (true)
 		{
-			HashMap<Integer, String> QnA_withBot = Questions();
-		}
-		else if(yes==2)
-		{
-			HashMap<Integer, String> QnA_withoutBot = NoobQuestions();
-			Answers_withoutBot = NoobAnswer();
-		}
-		private static HashMap<Integer, String> NoobQuestions() 
-		{
-			Scanner scan = new Scanner(System.in);
-			HashMap<Integer, String> QnA = new HashMap<Integer, String>();
-			System.out.println("How many Questions would you want ot set?");
-			int j = scan.nextInt();
-			for (int i = 1; i <= j; i++) {
-				System.out.println("Enter " + i + ". Question");
-				String yes = scan.nextLine();
-				QnA.put(i, yes);
+			HashMap<Character, String> fire = bot.Options(p);
+			HashMap<Character, String> water = new HashMap<Character, String>();
+			HashMap<Character, String> smoke = bot.wa(water);
+			smoke.putAll(fire);
+			System.out.println(smoke);
+			lifeLines( water,fire);
+			System.out.println("Please enter the option you think is right");
+			int r = scan.nextInt();
+			boolean ryuk = AnswerCorrect(r, p, fire);
+			scan.close();
+			if (ryuk == true) {
+				System.out.println("Congratulations its right answer");
+				Questions();
 			}
-			return QnA;
+			break;
 		}
-		*/
-	}
-
-
-	private static HashMap<Integer, String> Questions() {
-		HashMap<Integer, String> QnA = new HashMap<Integer, String>();
-		QnA.put(1, "The International Literacy Day is observed on?");// key(Index) and object(value)"Sep8",
-		QnA.put(2, "The language of Lakshadweep. a Union Territory of India, is?");// "Malayalam",
-		QnA.put(3, "In which group of places the Kumbha Mela is held every twelve years?");// "Prayag. Haridwar,
-																							// Ujjain,.
-																							// Nasik",
-		QnA.put(4, "Bahubali festival is related to?");// "Jainism",
-		QnA.put(5, "Which day is observed as the World Standards  Day?");// "Oct 14",
-		QnA.put(6, "Which of the following was the theme of the World Red Cross and Red Crescent Day?");// "Dignity for
-																										// all
-																										// - focus on
-																										// Children'",
-		QnA.put(7, "September 27 is celebrated every year as?");// "World Tourism Day",
-		QnA.put(8, "Who is the author of 'Manas Ka-Hans' ?");// "Amrit Lal Nagar",
-		QnA.put(9, "The death anniversary of which of the following leaders is observed as Martyrs' Day?");// "Mahatma
-																											// Oandhi",
-		QnA.put(10, "who is the Mangaka of One piece");// "Eiichiro Oda"
-		start(QnA);
-		return QnA;
-	}
-
-	public static void start (HashMap<Integer, String> QnA)
-	{
-//		while(true)
-//		{
-//			if(AnswerCorrect())
-//			{
-//				break;
-//			}
-//			else 
-//			{
-//				break;
-//			}
-//		}
-		Answers bot = new Answers();
-		Scanner scan = new Scanner(System.in);
-		System.out.println("please enter the question number");
-		int p;
-		p = scan.nextInt();
-		System.out.println(p + ": the Question is: "+ QnA.get(p) + "\n");
-		while(p<=10)
-		{
-			bot.correctAnswer(p);
-		HashMap<Character, String> op = bot.Options(p);
-		System.out.println(op);	
-		//LifeLines(scan);
-		for (int i= 1;i<=4;i++)
-		{
-		System.out.println("Option:" +i );
-		}
-		System.out.println("Please enter the option you think is write\n");
-		int f = scan.nextInt();
-		checkAnswer(f);
-		start(QnA);
 		scan.close();
-		}
+		System.out.println("Oops you have answered wrong answer\nbetter luck next time");
 	}
-//	private static boolean AnswerCorrect() {
-//
-//		return false;
-//	}
 
+	static int Questions() {
+		HashMap<Integer, String> QnA = new HashMap<Integer, String>();
+			QnA.put(1, "The International Literacy Day is observed on?");
+			QnA.put(2, "The language of Lakshadweep. a Union Territory of India, is?");
+			QnA.put(3, "In which group of places the Kumbha Mela is held every twelve years?");
+			QnA.put(4, "Bahubali festival is related to?");
+			QnA.put(5, "Which day is observed as the World Standards  Day?");
+			QnA.put(6, "Which of the following was the theme of the World Red Cross and Red Crescent Day?");
+			QnA.put(7, "September 27 is celebrated every year as?");
+			QnA.put(8, "Who is the author of 'Manas Ka-Hans' ?");
+			QnA.put(9, "The death anniversary of which of the following leaders is observed as Martyrs' Day?");
+			QnA.put(10, "who is the Mangaka of One piece");
+			Scanner sc = new Scanner(System.in);
+			System.out.println("please enter the question number");
+			int p;
+			p = sc.nextInt();
+			System.out.println(p + ": the Question is: " + QnA.get(p) + "\n");
+			sc.close();
+			return p;
+	}
 
-static void checkAnswer(int f) 
-{
-	Answers bot = new Answers();
-	
-	bot.correctAnswer(f);
-	
-	
-}
-}
-/*
-
-static void LifeLines(Scanner scan)
-{
-	System.out.println("Do you want to select a Lifeline?");
-	boolean i = scan.nextBoolean();
-	if(i = true)
-	{
-		System.out.println("Which LifeLine Do you want\npress 1 for fifty-fifty"
-				+ "\npress 2 for Audience_poll\npress 3 for call_of_friend");
-		int v = scan.nextInt();
-		if(v==1)
-		{
-			static void fifty_Fifty()
-			{
-				
+	public static boolean AnswerCorrect(int r, int p, HashMap<Character, String> fire) {
+		char ch = ' ';
+		switch (r) {
+		case 1:
+			ch = 'A';
+			System.out.println(ch);
+			break;
+		case 2:
+			ch = 'B';
+			System.out.println(ch);
+			break;
+		case 3:
+			ch = 'C';
+			System.out.println(ch);
+			break;
+		case 4:
+			ch = 'D';
+			System.out.println(ch);
+			break;
+		}
+		for (Entry<Character, String> entry : fire.entrySet()) {
+			if (entry.getKey() == ch) {
+				return true;
 			}
 		}
-		if(v==2)
-		{			
-			static void Audience_poll()
-			{
-				
+		return false;
+	}
+
+	static boolean checkAnswer(int f, int p) {
+		Answers bot = new Answers();
+		String check = bot.correctAnswer(f);
+		String orig = bot.Answers_for_Qestions(p);
+		if (check == orig) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public static  HashMap<Character, String> lifeLines(HashMap<Character, String> water, HashMap<Character, String> fire) {
+		doing( water,fire);
+		return water;
+	}
+
+	private static void doing(HashMap<Character, String> water, HashMap<Character, String> fire) {
+		System.out.println("Do you want to choose LifeLines?\n1:yes\n2:no");
+		Scanner s = new Scanner(System.in);
+		int noob = s.nextInt();
+		System.out.println(noob);
+		if (noob == 1) {
+			System.out.println("which lifeline do you want to use" + "\n1:Call_of_friend,2:Audience_poll,3:50-50");
+			int utter = s.nextInt();
+			
+			switch (utter) {
+			case 1:call_of_friend(water,fire);
+				break;
+			case 2:
+				audience_poll();
+				break;
+			case 3:
+				fifty_fifty();
+				break;
+			default:
+				System.out.println("please sleact any of these three lifeline");
 			}
 		}
-		if(v==3)
+		else if(noob != 2)
 		{
-			static void call_of_friend()
-			{
-				
-			}	
+			System.out.println("Please enter the valid input");
 		}
+		s.close();
 	}
-	else 
-	{
-		System.out.println("Very good all the best");
+
+	private static void fifty_fifty() {
+
+	}
+
+	private static void audience_poll() {
+
+	}
+
+	private static HashMap<Character, String> call_of_friend(HashMap<Character, String> water, HashMap<Character, String> fire) {
+		if(	water.containsKey('A'))
+		{
+			water.remove('A');
+			if(water.containsKey('B'))
+			{
+				water.remove('D');
+			}
+			if(water.containsKey('C'))
+			{
+				water.remove('C');
+			}
+			if(water.containsKey('D'))
+			{
+				water.remove('D');
+			}
+			
+		}
+		else
+		{		
+			if(water.containsKey('B'))
+			{
+				water.remove('D');		
+			}
+			if(	water.containsKey('C'))
+			{
+				water.remove('C');
+			}
+			if(	water.containsKey('D'))
+			{
+				water.remove('D');
+			}
+			
+		}
+		water.putAll(fire);
+		System.out.println(water);
+		return water;
 	}
 }
-*/
 
-
-class Answers
-{
-	ArrayList<String> pat = new ArrayList<String>();
-	//String p[] = { " ", " ", " ", " " };
-	String Answers_for_Qestions(int b)
-	{
-		pat.add( "*" );
-		pat.add( "*" );
-		pat.add( "*" );
-		pat.add( "*" );
+class Answers {
+	String Answers_for_Qestions(int b) {
 		HashMap<Integer, String> a = new HashMap<Integer, String>();
-		
+
 		switch (b) {
 		case 1:
 			a.put(1, "Sep8");
@@ -196,72 +210,75 @@ class Answers
 			a.put(10, "Eiichiro Oda");
 			break;
 		}
+
 		return a.get(b);
 	}
 
+	String pat[] = { " ", " ", " ", " " };
+	Random r = new Random();
+	int z = r.nextInt(4);// 0,1,2,3
+	HashMap<Character, String> oop = new HashMap<Character, String>();
 
-	 ArrayList<String> correctAnswer(int c) {
-		int z = r.nextInt(4);// 2
-		 String an = Answers_for_Qestions(c);// 0,1,2,3
-		 pat.add(an);
+	HashMap<Character, String> Options(int c) {
+
+
 		switch (z + 1) {
 		case 1:
-			oop.put('A', pat.get(z));
-			break;// System.out.println("A:"+p[z]+"\n");
+			oop.put('A', correctAnswer(c));
+			break;
 		case 2:
-			oop.put('B', pat.get(z));
-			break;// System.out.println("B:"+p[z]+"\n");break;
+			oop.put('B', correctAnswer(c));
+			break;
 		case 3:
-			oop.put('C', pat.get(z));
-			break;// System.out.println("C:"+p[z]+"\n");break;
+			oop.put('C', correctAnswer(c));
+			break;
 		case 4:
-			oop.put('D', pat.get(z));
-			break;// System.out.println("D:"+p[z]+"\n");break;
+			oop.put('D', correctAnswer(c));
+			break;
 		}
-		return pat;
-	}
-	 HashMap<Character, String> oop = new HashMap<Character, String>();
-	 Random r = new Random();
-	 
-	 HashMap<Character, String> Options(int c)
-	 {
-		 for (int k = 1; k < pat.size(); k++) 
-		 {
-			 if (pat.contains("*")) {
-				 for (int i = 0; i < 3; i++) {
-					 String randomWord = rand(k);
-					 pat.add(randomWord);
-				 }
-			 }
-			 switch (k) {
-			 case 1:
-				 oop.put('A', pat.get(k));
-				 break;
-			 case 2:
-				 oop.put('B', pat.get(k));
-				 break;
-			 case 3:
-				 oop.put('C', pat.get(k));
-				 break;
-			 case 4:
-				 oop.put('D', pat.get(k));
-				 break;
-			 }
-		 }
-		 return oop;
-	 }
-
-	 String rand(int len) {
-		 String name = "";
-		int move = r.nextInt(4,8);
-	        for (int i = 0; i < move; i++) 
-	        {
-	            int v = 1 + (int) (Math.random() * 26);
-	            char c = (char) (v + (i == 0 ? 'A' : 'a') - 1);
-	            name += c;
-	        }
-	        return name;
+		return oop;
 	}
 
+	HashMap<Character,String>  wa(HashMap<Character,String> water) {
+		for (int k = 0; k < pat.length; k++) // 4
+		{
+			if (pat[k] == " ") {
+				{
+					String randomWord = rand(k);
+					pat[k] = randomWord;
+					switch (k + 1) {
+					case 1:
+						water.put('A', randomWord);
+						break;
+					case 2:
+						water.put('B', randomWord);
+						break;
+					case 3:
+						water.put('C', randomWord);
+						break;
+					case 4:
+						water.put('D', randomWord);
+						break;
+					}
+				}
+			}			
+		}
+		return water;
+	}
+
+	String correctAnswer(int c) {
+		pat[z] = Answers_for_Qestions(c);
+		return pat[z];
+	}
+
+	String rand(int len) {
+		String name = "";
+		int move = r.nextInt(4, 8);
+		for (int i = 0; i < move; i++) {
+			int v = 1 + (int) (Math.random() * 26);
+			char c = (char) (v + (i == 0 ? 'A' : 'a') - 1);
+			name += c;
+		}
+		return name;
+	}
 }
-
