@@ -19,7 +19,6 @@ class Answers {
 		} else if (noob != 2) {
 			System.out.println("Please enter the valid input");
 			lifeLines(scan, water, fire);
-			return false;
 		}
 		return true;
 	}
@@ -221,19 +220,19 @@ public class KBC {
 				switch (sam) {
 				case 1:
 					boolean yash = bot.lifeLines(scan, water, fire);
-					System.out.print("Life-Lines used: " + (sam-1) + " \n");
+					System.out.print("Life-Lines used: " + (sam) + " \n");
 					if(yash==true) {
 					sam++;}
 					break;
 				case 2:
 					 yash = bot.lifeLines(scan, water, fire);
-					System.out.print("Life-Lines used: " + (sam-1) + " \n");
+					System.out.print("Life-Lines used: " + (sam) + " \n");
 					if(yash==true) {
 						sam++;}
 					break;
 				case 3:
 					 yash = bot.lifeLines(scan, water, fire);
-					System.out.print("Life-Lines used: " + (sam-1) + " \n");
+					System.out.print("Life-Lines used: " + (sam) + " \n");
 					if(yash==true) {
 						sam++;}
 					break;
