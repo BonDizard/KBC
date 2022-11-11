@@ -133,7 +133,6 @@ private void repeat(Scanner scan, HashMap<Character, String> water, HashMap<Char
 		break;
 	case 2:
 		audience_poll(fire);
-		
 		break;
 	case 3:
 		fifty_fifty(water, fire);
@@ -156,33 +155,24 @@ private static void audience_poll(HashMap<Character, String> fire) {
 	System.out.println(sanji + " % of the audience have voted for" + fire);
 }
 
-private static HashMap<Character, String> fifty_fifty(HashMap<Character, String> water,
-		HashMap<Character, String> fire) {
-	if (water.containsKey('A')) {
+private static HashMap<Character, String> fifty_fifty(HashMap<Character, String> water,HashMap<Character, String> fire) {
+	if (fire.containsKey('A')) {
+		water.remove('C');
+		water.remove('B');
+	}else if (fire.containsKey('B'))
+			{
+		water.remove('C');
 		water.remove('A');
-		if (water.containsKey('B')) {
-			water.remove('D');
-		}
-		if (water.containsKey('C')) {
-			water.remove('C');
-		}
-		if (water.containsKey('D')) {
-			water.remove('D');
-		}
-		
-	} else {
-		if (water.containsKey('B')) {
-			water.remove('D');
-		}
-		if (water.containsKey('C'))
-			
-		{
-			water.remove('C');
-		}
-		if (water.containsKey('D')) {
-			water.remove('D');
-		}
-	}
+			}else if (fire.containsKey('C'))
+			{
+		water.remove('B');
+		water.remove('A');
+			}
+			else if (fire.containsKey('D'))
+			{
+		water.remove('B');
+		water.remove('A');
+			}
 	water.putAll(fire);
 	System.out.println(water);
 	return water;
@@ -190,13 +180,8 @@ private static HashMap<Character, String> fifty_fifty(HashMap<Character, String>
 }
 public class KBC {
 	public static void main(String[] args) {
-		ice();
-	}
-
-	private static void ice() {
 		int q_no=1;
-		Questions(q_no);
-
+		Questions(q_no);	
 	}
 
 	static int Questions(int q_no) {
@@ -226,17 +211,17 @@ public class KBC {
 			boolean ryuk = AnswerCorrect(r, q_no, fire);
 
 			if (ryuk == true&&q_no<=9) {
-				System.out.println("Congratulations its right answer");
+				System.out.println("Congratulations its right answer\n");
 				q_no++;
 				Questions(q_no);
 			}
 			else {
+			System.out.println("Oops you have answered wrong answer\nbetter luck next time");
 			break;
 			}
 		}
-
-		System.out.println("Oops you have answered wrong answer\nbetter luck next time");
 		return q_no;
+
 	}
 
 	public static boolean AnswerCorrect(int r, int p, HashMap<Character, String> fire) {
