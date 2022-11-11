@@ -190,10 +190,16 @@ private static HashMap<Character, String> fifty_fifty(HashMap<Character, String>
 }
 public class KBC {
 	public static void main(String[] args) {
-		Questions();
+		ice();
 	}
 
-	static int Questions() {
+	private static void ice() {
+		int q_no=1;
+		Questions(q_no);
+
+	}
+
+	static int Questions(int q_no) {
 		HashMap<Integer, String> QnA = new HashMap<Integer, String>();
 		QnA.put(1, "The International Literacy Day is observed on?");
 		QnA.put(2, "The language of Lakshadweep. a Union Territory of India, is?");
@@ -205,15 +211,11 @@ public class KBC {
 		QnA.put(8, "Who is the author of 'Manas Ka-Hans' ?");
 		QnA.put(9, "The death anniversary of which of the following leaders is observed as Martyrs' Day?");
 		QnA.put(10, "who is the Mangaka of One piece");
-		Scanner sc = new Scanner(System.in);
-		System.out.println("please enter the question number");
-		int p;
-		p = sc.nextInt();
-		System.out.println(p + ": the Question is: " + QnA.get(p) + "\n");
+		System.out.println(q_no +":"+ QnA.get(q_no) + "\n");
 		Answers bot = new Answers();
 		Scanner scan = new Scanner(System.in);
 		while (true) {
-			HashMap<Character, String> fire = bot.Options(p);
+			HashMap<Character, String> fire = bot.Options(q_no);
 			HashMap<Character, String> water = new HashMap<Character, String>();
 			HashMap<Character, String> smoke = bot.wa(water);
 			smoke.putAll(fire);
@@ -221,18 +223,20 @@ public class KBC {
 			bot.lifeLines(scan,water, fire);
 			System.out.println("Please enter the option you think is right");
 			int r = scan.nextInt();
-			boolean ryuk = AnswerCorrect(r, p, fire);
+			boolean ryuk = AnswerCorrect(r, q_no, fire);
 
-			if (ryuk == true) {
+			if (ryuk == true&&q_no<=9) {
 				System.out.println("Congratulations its right answer");
-				Questions();
+				q_no++;
+				Questions(q_no);
 			}
+			else {
 			break;
-			
+			}
 		}
 
 		System.out.println("Oops you have answered wrong answer\nbetter luck next time");
-		return p;
+		return q_no;
 	}
 
 	public static boolean AnswerCorrect(int r, int p, HashMap<Character, String> fire) {
