@@ -6,10 +6,48 @@ import java.util.HashMap;
 import java.util.Random;
 
 class Answers {
-	int nami=0;
-	int robin=0;
-	int usop=0;
+	int[] nami= new int[2];
+
+	public int[] lifeLines(Scanner scan, HashMap<Character, String> water, HashMap<Character, String> fire) {
+		
+			System.out.println("Do you want to choose LifeLines? 1:yes, 2:no");
+			int noob = scan.nextInt();
+			System.out.println(noob);
+			if (noob == 1) {
+				repeat(scan, water, fire);
+			} else if (noob != 2) {
+				System.out.println("Please enter the valid input");
+				lifeLines(scan, water, fire);
+			}
+			return nami;
+		}
 	
+	
+	private boolean repeat(Scanner scan, HashMap<Character, String> water, HashMap<Character, String> fire) {
+		System.out.println("which lifeline do you want to use" + "\n1: Call_of_friend,2: Audience_poll,3: 50-50");
+		int utter = scan.nextInt();
+		
+		switch (utter) {
+		case 1:
+			call_of_friend(fire);return false;
+		case 2:
+	
+				audience_poll(fire);
+			
+			break;
+		case 3:
+
+				fifty_fifty(water, fire);
+
+		
+			break;
+		default:
+			
+			repeat(scan, water, fire);
+		}
+		return false;
+	}
+
 	String Answers_for_Qestions(int b) {
 		HashMap<Integer, String> a = new HashMap<Integer, String>();
 
@@ -115,91 +153,50 @@ class Answers {
 		}
 		return name;
 	}
-public void lifeLines(Scanner scan,HashMap<Character, String> water, HashMap<Character, String> fire) {
-	System.out.println("Do you want to choose LifeLines? 1:yes, 2:no");
-	int noob = scan.nextInt();
-	System.out.println(noob);
-	if (noob == 1) {
-		repeat(scan, water, fire);
-	} else if (noob != 2) {
-		System.out.println("Please enter the valid input");
-		lifeLines(scan,water,fire);
-	}
-}
 
-private int repeat(Scanner scan, HashMap<Character, String> water, HashMap<Character, String> fire) {
-	System.out.println("which lifeline do you want to use" + "\n1: Call_of_friend,2: Audience_poll,3: 50-50");
-	int utter = scan.nextInt();
-	
-	switch (utter) {
-	case 1:if(nami==0) {
-		call_of_friend(fire);nami=1;
+
+	private static void call_of_friend(HashMap<Character, String> fire) {
+		System.out.println("Your friend is telling you to pick" + fire);
+
+	}
+
+	private static void audience_poll(HashMap<Character, String> fire) {
+		Random r = new Random();
+		int sanji = r.nextInt(80, 85);
+		System.out.println(sanji + " % of the audience have voted for" + fire);
+	}
+
+	private static HashMap<Character, String> fifty_fifty(HashMap<Character, String> water,
+			HashMap<Character, String> fire) {
+		if (fire.containsKey('A')) {
+			water.remove('C');
+			water.remove('B');
+		} else if (fire.containsKey('B')) {
+			water.remove('C');
+			water.remove('A');
+		} else if (fire.containsKey('C')) {
+			water.remove('B');
+			water.remove('A');
+		} else if (fire.containsKey('D')) {
+			water.remove('B');
+			water.remove('A');
 		}
-	else {
-		System.out.println("You have already used this lifeline");
+		water.putAll(fire);
+		System.out.println(water);
+		return water;
 	}
-		break;
-	case 2:if(usop==0) {
-		audience_poll(fire);usop=1;}
-	else {
-		System.out.println("You have already used this lifeline");
-	}
-		break;
-	case 3:if(robin==0) {
-		fifty_fifty(water, fire);robin=1;}
-	else {
-		System.out.println("You have already used this lifeline");
-	}
-		break;
-	default:
-		System.out.println("please sleact any of these three lifeline");
-		repeat(scan,water,fire);	
-	}
-	return utter;
+
 }
 
-private static void call_of_friend(HashMap<Character, String> fire) {
-	System.out.println("Your friend is telling you to pick" + fire);
-	
-}
-
-private static void audience_poll(HashMap<Character, String> fire) {
-	Random r = new Random();
-	int sanji = r.nextInt(80, 85);
-	System.out.println(sanji + " % of the audience have voted for" + fire);
-}
-
-private static HashMap<Character, String> fifty_fifty(HashMap<Character, String> water,HashMap<Character, String> fire) {
-	if (fire.containsKey('A')) {
-		water.remove('C');
-		water.remove('B');
-	}else if (fire.containsKey('B'))
-			{
-		water.remove('C');
-		water.remove('A');
-			}else if (fire.containsKey('C'))
-			{
-		water.remove('B');
-		water.remove('A');
-			}
-			else if (fire.containsKey('D'))
-			{
-		water.remove('B');
-		water.remove('A');
-			}
-	water.putAll(fire);
-	System.out.println(water);
-	return water;
-}
-}
 public class KBC {
 	public static void main(String[] args) {
-		System.out.println("Welcome to Kaun Banega Crorepati,mai apka amithab");
-		int q_no=1;
-		Questions(q_no);	
+		System.out.println("Welcome to Kaun Banega Crorepati, mai apka Amitabh Bachchan");
+		int q_no = 1;
+		int sam=1;
+		Questions(q_no,sam);
 	}
 
-	static int Questions(int q_no) {
+	static int Questions(int q_no,int sam) {
 		HashMap<Integer, String> QnA = new HashMap<Integer, String>();
 		QnA.put(1, "The International Literacy Day is observed on?");
 		QnA.put(2, "The language of Lakshadweep. a Union Territory of India, is?");
@@ -211,7 +208,7 @@ public class KBC {
 		QnA.put(8, "Who is the author of 'Manas Ka-Hans' ?");
 		QnA.put(9, "The death anniversary of which of the following leaders is observed as Martyrs' Day?");
 		QnA.put(10, "who is the Mangaka of One piece");
-		System.out.println(q_no +":"+ QnA.get(q_no) + "\n");
+		System.out.println(q_no + ":" + QnA.get(q_no) + "\n");
 		Answers bot = new Answers();
 		Scanner scan = new Scanner(System.in);
 		while (true) {
@@ -219,20 +216,37 @@ public class KBC {
 			HashMap<Character, String> water = new HashMap<Character, String>();
 			HashMap<Character, String> smoke = bot.wa(water);
 			smoke.putAll(fire);
-			System.out.println(smoke);
-			bot.lifeLines(scan,water, fire);
+			System.out.println(smoke);			
+			if(sam<=4)
+			{
+			switch(sam) 
+			{
+			case 1:
+			bot.lifeLines(scan, water, fire);
+			sam++;
+			break;
+			case 2:
+				bot.lifeLines(scan, water, fire);
+				sam++;
+				break;
+			case 3:
+				bot.lifeLines(scan, water, fire);
+				sam++;
+				break;
+			}
+			}
+			
 			System.out.println("Please enter the option you think is right");
 			int r = scan.nextInt();
 			boolean ryuk = AnswerCorrect(r, q_no, fire);
 
-			if (ryuk == true&&q_no<=9) {
+			if (ryuk == true && q_no <= 9) {
 				System.out.println("Congratulations its right answer\n");
 				q_no++;
-				Questions(q_no);
-			}
-			else {
-			System.out.println("Oops you have answered wrong answer\nbetter luck next time");
-			break;
+				Questions(q_no,sam);
+			} else {
+				System.out.println("Oops you have answered wrong answer\nbetter luck next time");
+				break;
 			}
 		}
 		return q_no;
@@ -279,4 +293,3 @@ public class KBC {
 	}
 
 }
-
