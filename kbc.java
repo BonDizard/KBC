@@ -6,6 +6,10 @@ import java.util.HashMap;
 import java.util.Random;
 
 class Answers {
+	int nami=0;
+	int robin=0;
+	int usop=0;
+	
 	String Answers_for_Qestions(int b) {
 		HashMap<Integer, String> a = new HashMap<Integer, String>();
 
@@ -123,25 +127,35 @@ public void lifeLines(Scanner scan,HashMap<Character, String> water, HashMap<Cha
 	}
 }
 
-private void repeat(Scanner scan, HashMap<Character, String> water, HashMap<Character, String> fire) {
+private int repeat(Scanner scan, HashMap<Character, String> water, HashMap<Character, String> fire) {
 	System.out.println("which lifeline do you want to use" + "\n1: Call_of_friend,2: Audience_poll,3: 50-50");
 	int utter = scan.nextInt();
 	
 	switch (utter) {
-	case 1:
-		call_of_friend(fire);
+	case 1:if(nami==0) {
+		call_of_friend(fire);nami=1;
+		}
+	else {
+		System.out.println("You have already used this lifeline");
+	}
 		break;
-	case 2:
-		audience_poll(fire);
+	case 2:if(usop==0) {
+		audience_poll(fire);usop=1;}
+	else {
+		System.out.println("You have already used this lifeline");
+	}
 		break;
-	case 3:
-		fifty_fifty(water, fire);
+	case 3:if(robin==0) {
+		fifty_fifty(water, fire);robin=1;}
+	else {
+		System.out.println("You have already used this lifeline");
+	}
 		break;
 	default:
 		System.out.println("please sleact any of these three lifeline");
-		repeat(scan,water,fire);
-		
+		repeat(scan,water,fire);	
 	}
+	return utter;
 }
 
 private static void call_of_friend(HashMap<Character, String> fire) {
@@ -180,6 +194,7 @@ private static HashMap<Character, String> fifty_fifty(HashMap<Character, String>
 }
 public class KBC {
 	public static void main(String[] args) {
+		System.out.println("Welcome to Kaun Banega Crorepati,mai apka amithab");
 		int q_no=1;
 		Questions(q_no);	
 	}
