@@ -6,43 +6,42 @@ import java.util.HashMap;
 import java.util.Random;
 
 class Answers {
-	int[] nami= new int[2];
+	int[] nami = new int[2];
 
 	public int[] lifeLines(Scanner scan, HashMap<Character, String> water, HashMap<Character, String> fire) {
-		
-			System.out.println("Do you want to choose LifeLines? 1:yes, 2:no");
-			int noob = scan.nextInt();
-			System.out.println(noob);
-			if (noob == 1) {
-				repeat(scan, water, fire);
-			} else if (noob != 2) {
-				System.out.println("Please enter the valid input");
-				lifeLines(scan, water, fire);
-			}
-			return nami;
+
+		System.out.println("Do you want to choose LifeLines? 1:yes, 2:no");
+		int noob = scan.nextInt();
+		System.out.println(noob);
+		if (noob == 1) {
+			repeat(scan, water, fire);
+		} else if (noob != 2) {
+			System.out.println("Please enter the valid input");
+			lifeLines(scan, water, fire);
 		}
-	
-	
+		return nami;
+	}
+
 	private boolean repeat(Scanner scan, HashMap<Character, String> water, HashMap<Character, String> fire) {
-		System.out.println("which lifeline do you want to use" + "\n1: Call_of_friend,2: Audience_poll,3: 50-50");
+		System.out.println("which lifeline do you want to use" + "\n1: Call_of_friend, 2: Audience_poll, 3: 50-50");
 		int utter = scan.nextInt();
-		
+
 		switch (utter) {
 		case 1:
-			call_of_friend(fire);return false;
+			call_of_friend(fire);
+			return false;
 		case 2:
-	
-				audience_poll(fire);
-			
+
+			audience_poll(fire);
+
 			break;
 		case 3:
 
-				fifty_fifty(water, fire);
+			fifty_fifty(water, fire);
 
-		
 			break;
 		default:
-			
+
 			repeat(scan, water, fire);
 		}
 		return false;
@@ -53,31 +52,31 @@ class Answers {
 
 		switch (b) {
 		case 1:
-			a.put(1, "Sep8");
+			a.put(1, "James Gosling");
 			break;
 		case 2:
 			a.put(2, "Malayalam");
 			break;
 		case 3:
-			a.put(3, "Prayag. Haridwar, Ujjain,. Nasik");
+			a.put(3, "8");
 			break;
 		case 4:
-			a.put(4, "Jainism");
+			a.put(4, "JDK");
 			break;
 		case 5:
-			a.put(5, "Oct 14");
+			a.put(5, ".java");
 			break;
 		case 6:
-			a.put(6, "Dignity for all - focus on Children'");
+			a.put(6, "OutOfMemoryError");
 			break;
 		case 7:
-			a.put(7, "World Tourism Day");
+			a.put(7, "Unicode escape sequence");
 			break;
 		case 8:
-			a.put(8, "Amrit Lal Nagar");
+			a.put(8, "int");
 			break;
 		case 9:
-			a.put(9, "Mahatma Oandhi");
+			a.put(9, "getName()");
 			break;
 		case 10:
 			a.put(10, "Eiichiro Oda");
@@ -154,7 +153,6 @@ class Answers {
 		return name;
 	}
 
-
 	private static void call_of_friend(HashMap<Character, String> fire) {
 		System.out.println("Your friend is telling you to pick" + fire);
 
@@ -185,30 +183,29 @@ class Answers {
 		System.out.println(water);
 		return water;
 	}
-
 }
 
 public class KBC {
 	public static void main(String[] args) {
-		System.out.println("Welcome to Kaun Banega Crorepati, mai apka Amitabh Bachchan");
+		System.out.println("Welcome to Kaun Banega Crorepati, mai apka Amitabh Bachchan\n");
 		int q_no = 1;
-		int sam=1;
-		Questions(q_no,sam);
+		int sam = 1;
+		Questions(q_no, sam);
 	}
 
-	static int Questions(int q_no,int sam) {
+	static int Questions(int q_no, int sam) {
 		HashMap<Integer, String> QnA = new HashMap<Integer, String>();
-		QnA.put(1, "The International Literacy Day is observed on?");
+		QnA.put(1, "Who invented Java Programming?");
 		QnA.put(2, "The language of Lakshadweep. a Union Territory of India, is?");
-		QnA.put(3, "In which group of places the Kumbha Mela is held every twelve years?");
-		QnA.put(4, "Bahubali festival is related to?");
-		QnA.put(5, "Which day is observed as the World Standards  Day?");
-		QnA.put(6, "Which of the following was the theme of the World Red Cross and Red Crescent Day?");
-		QnA.put(7, "September 27 is celebrated every year as?");
-		QnA.put(8, "Who is the author of 'Manas Ka-Hans' ?");
-		QnA.put(9, "The death anniversary of which of the following leaders is observed as Martyrs' Day?");
+		QnA.put(3,  "Number of primitive data types in Java are?");
+		QnA.put(4, "Which component is used to compile, debug and execute the java programs?");
+		QnA.put(5, "What is the extension of java code files?");
+		QnA.put(6, "Which exception is thrown when java is out of memory?");
+		QnA.put(7, "The \\u0021 article referred to as a");
+		QnA.put(8, " What is the return type of the hashCode() method in the Object class? ?");
+		QnA.put(9, "Which method of the Class.class is used to determine the name of a class represented by the class object as a String?");
 		QnA.put(10, "who is the Mangaka of One piece");
-		System.out.println(q_no + ":" + QnA.get(q_no) + "\n");
+		System.out.println(q_no + ":" + QnA.get(q_no) );
 		Answers bot = new Answers();
 		Scanner scan = new Scanner(System.in);
 		while (true) {
@@ -216,26 +213,24 @@ public class KBC {
 			HashMap<Character, String> water = new HashMap<Character, String>();
 			HashMap<Character, String> smoke = bot.wa(water);
 			smoke.putAll(fire);
-			System.out.println(smoke);			
-			if(sam<=4)
-			{
-			switch(sam) 
-			{
-			case 1:
-			bot.lifeLines(scan, water, fire);
-			sam++;
-			break;
-			case 2:
-				bot.lifeLines(scan, water, fire);
-				sam++;
-				break;
-			case 3:
-				bot.lifeLines(scan, water, fire);
-				sam++;
-				break;
+			System.out.println(smoke);
+			if (sam <= 4) {
+				switch (sam) {
+				case 1:
+					bot.lifeLines(scan, water, fire);
+					sam++;
+					break;
+				case 2:
+					bot.lifeLines(scan, water, fire);
+					sam++;
+					break;
+				case 3:
+					bot.lifeLines(scan, water, fire);
+					sam++;
+					break;
+				}
 			}
-			}
-			
+
 			System.out.println("Please enter the option you think is right");
 			int r = scan.nextInt();
 			boolean ryuk = AnswerCorrect(r, q_no, fire);
@@ -243,7 +238,7 @@ public class KBC {
 			if (ryuk == true && q_no <= 9) {
 				System.out.println("Congratulations its right answer\n");
 				q_no++;
-				Questions(q_no,sam);
+				Questions(q_no, sam);
 			} else {
 				System.out.println("Oops you have answered wrong answer\nbetter luck next time");
 				break;
